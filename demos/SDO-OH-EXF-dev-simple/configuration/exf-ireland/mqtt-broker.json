@@ -3,7 +3,7 @@
 	"url": "intel.edgex-mqtt-broker",
 	"version": "1.5.8",
 	"arch": "amd64",
-	"public": true,
+	"public": false,
 	"sharable": "singleton",
 	"deployment": {
 		"services": {

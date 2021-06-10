@@ -3,7 +3,7 @@
   "url": "intel.edgex-redis",
   "version": "5.8.0",
   "arch": "amd64",
-  "public": true,
+  "public": false,
   "sharable": "singleton",
   "requiredServices": [],
   "userInput": [

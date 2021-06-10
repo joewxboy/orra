@@ -3,7 +3,7 @@
   "url": "intel.edgex-consul",
   "version": "1.2.0",
   "arch": "amd64",
-  "public": true,
+  "public": false,
   "sharable": "singleton",
   "requiredServices": [],
    "userInput": [
