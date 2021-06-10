@@ -1,0 +1,44 @@
+consul:
+    image: edgexfoundry/docker-edgex-consul:1.2.0
+    ports:
+      - "127.0.0.1:8400:8400"
+      - "127.0.0.1:8500:8500"
+    container_name: edgex-core-consul
+    hostname: edgex-core-consul
+    networks:
+      - edgex-network
+    volumes:
+      - consul-config:/consul/config:z
+      - consul-data:/consul/data:z
+    environment: 
+      - EDGEX_DB=redis
+      - EDGEX_SECURE=false
+
+{
+  "org": "mycluster",
+  "url": "intel.edgex-consul",
+  "version": "1.2.0",
+  "arch": "amd64",
+  "public": true,
+  "sharable": "singleton",
+  "requiredServices": [],
+   "userInput": [
+    { "name": "EDGEX_DB", "type": "string", "defaultValue": "redis" },
+    { "name": "EDGEX_SECURE", "type": "boolean", "defaultValue": false }
+  ],
+  "deployment": {
+    "services": {
+      "edgex-core-consul": {
+        "image": "edgexfoundry/docker-edgex-consul:1.2.0",
+        "binds": [
+          "consul-config:/consul/config:rw",
+          "consul-data:/consul/data:rw"
+        ],
+        "ports": [ 
+          { "HostIP": "127.0.0.1", "HostPort": "8400:8400/tcp" },
+          { "HostIP": "127.0.0.1", "HostPort": "8500:8500/tcp" }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+  metadata:
+    image: edgexfoundry/docker-core-metadata-go:1.2.1
+    ports:
+      - "127.0.0.1:48081:48081"
+    container_name: edgex-core-metadata
+    hostname: edgex-core-metadata
+    networks:
+      - edgex-network
+    environment:
+      <<: *common-variables
+      Service_Host: edgex-core-metadata
+      Service_Timeout: "20000"
+      Notifications_Sender: edgex-core-metadata
+    depends_on:
+      - consul
+      - redis
+      - notifications
+
+{
+  "org": "mycluster",
+  "url": "intel.edgex-core-metadata",
+  "version": "1.2.1",
+  "arch": "amd64",
+  "public": true,
+  "sharable": "singleton",
+  "requiredServices": [
+{ "org": "mycluster", "url": "intel.edgex-consul", "version": "1.2.0", "arch": "amd64" },
+{ "org": "mycluster", "url": "intel.edgex-redis", "version": "5.8.0", "arch": "amd64" },
+{ "org": "mycluster", "url": "intel.support-notifications", "version": "1.2.1", "arch": "amd64" }
+],
+   "userInput": [
+        { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": false},
+        { "name": "Registry_Host", "type": "string",  "defaultValue": "edgex-core-consul" },
+        { "name": "Clients_CoreData_Host", "type": "string",  "defaultValue": "edgex-core-data" },
+        { "name": "Clients_Data_Host", "type": "string",  "defaultValue": "edgex-core-data" },
+        { "name": "Clients_Notifications_Host", "type": "string",  "defaultValue": "edgex-support-notifications" },
+        { "name": "Clients_Metadata_Host", "type": "string",  "defaultValue": "edgex-core-metadata" },
+        { "name": "Clients_Command_Host", "type": "string",  "defaultValue": "edgex-core-command" },
+        { "name": "Clients_Scheduler_Host", "type": "string",  "defaultValue": "edgex-support-scheduler" },
+        { "name": "Clients_RulesEngine_Host", "type": "string",  "defaultValue": "edgex-kuiper" },
+        { "name": "Clients_VirtualDevice_Host", "type": "string",  "defaultValue": "edgex-device-virtual" },
+        { "name": "Databases_Primary_Host", "type": "string",  "defaultValue": "edgex-redis" },
+        { "name": "Logging_EnableRemote", "type": "boolean",  "defaultValue": false},
+        { "name": "Service_Host", "type": "string",  "defaultValue": "edgex-core-metadata"},
+        { "name": "Service_Timeout", "type": "int",  "defaultValue": 20000},
+        { "name": "Notifications_Sender", "type": "string",  "defaultValue": "edgex-core-metadata"}
+    ],
+  "deployment": {
+    "services": {
+      "edgex-core-metadata": {
+        "image": "edgexfoundry/docker-core-metadata-go:1.2.1",
+        "ports": [ 
+          { "HostIP": "127.0.0.1", "HostPort": "48081:48081/tcp" }
+        ]
+      }
+    }
+  }
+}

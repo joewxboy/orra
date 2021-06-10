@@ -1,0 +1,52 @@
+notifications:
+    image: edgexfoundry/docker-support-notifications-go:1.2.1
+    ports:
+      - "127.0.0.1:48060:48060"
+    container_name: edgex-support-notifications
+    hostname: edgex-support-notifications
+    networks:
+      - edgex-network
+    environment:
+      <<: *common-variables
+      Service_Host: edgex-support-notifications
+    depends_on:
+      - consul
+      - redis
+
+{
+  "org": "mycluster",
+  "url": "intel.support-notifications",
+  "version": "1.2.1",
+  "arch": "amd64",
+  "public": true,
+  "sharable": "singleton",
+  "requiredServices": [
+      { "org": "mycluster", "url": "intel.edgex-consul", "version": "1.2.0", "arch": "amd64" },
+      { "org": "mycluster", "url": "intel.edgex-redis", "version": "5.8.0", "arch": "amd64" }
+   ],
+   "userInput": [
+      { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": false},
+        { "name": "Registry_Host", "type": "string",  "defaultValue": "edgex-core-consul" },
+        { "name": "Clients_CoreData_Host", "type": "string",  "defaultValue": "edgex-core-data" },
+        { "name": "Clients_Data_Host", "type": "string",  "defaultValue": "edgex-core-data" },
+        { "name": "Clients_Notifications_Host", "type": "string",  "defaultValue": "edgex-support-notifications" },
+        { "name": "Clients_Metadata_Host", "type": "string",  "defaultValue": "edgex-core-metadata" },
+        { "name": "Clients_Command_Host", "type": "string",  "defaultValue": "edgex-core-command" },
+        { "name": "Clients_Scheduler_Host", "type": "string",  "defaultValue": "edgex-support-scheduler" },
+        { "name": "Clients_RulesEngine_Host", "type": "string",  "defaultValue": "edgex-kuiper" },
+        { "name": "Clients_VirtualDevice_Host", "type": "string",  "defaultValue": "edgex-device-virtual" },
+        { "name": "Databases_Primary_Host", "type": "string",  "defaultValue": "edgex-redis" },
+      { "name": "Logging_EnableRemote", "type": "boolean",  "defaultValue": false},
+      { "name": "Service_Host", "type": "string", "defaultValue": "edgex-support-notifications" }
+  ],
+  "deployment": {
+    "services": {
+      "edgex-support-notifications": {
+        "image": "edgexfoundry/docker-support-notifications-go:1.2.1",
+        "ports": [ 
+          { "HostIP": "127.0.0.1", "HostPort": "48060/tcp" }
+        ]
+      }
+    }
+  }
+}
