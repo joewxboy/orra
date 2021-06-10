@@ -1,12 +1,3 @@
-  mqtt:
-    image: eclipse-mosquitto:1.5.8
-    ports:
-      - "1883:1883"
-    container_name: mqtt
-    hostname: mqtt
-    networks:
-      - edgex-network  
-
 {
   "org": "mycluster",
   "url": "intel.edgex-mqtt-broker",

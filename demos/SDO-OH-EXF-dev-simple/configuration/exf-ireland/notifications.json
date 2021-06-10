@@ -1,18 +1,3 @@
-notifications:
-    image: edgexfoundry/docker-support-notifications-go:1.2.1
-    ports:
-      - "127.0.0.1:48060:48060"
-    container_name: edgex-support-notifications
-    hostname: edgex-support-notifications
-    networks:
-      - edgex-network
-    environment:
-      <<: *common-variables
-      Service_Host: edgex-support-notifications
-    depends_on:
-      - consul
-      - redis
-
 {
   "org": "mycluster",
   "url": "intel.support-notifications",

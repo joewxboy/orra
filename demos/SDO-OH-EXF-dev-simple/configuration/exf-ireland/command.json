@@ -6,7 +6,7 @@
   "public": true,
   "sharable": "singleton",
   "requiredServices": [
-      { "org": "mycluster", "url": "intel.docker-edgex-consul", "version": "1.2.0", "arch": "amd64" },
+      { "org": "mycluster", "url": "intel.edgex-consul", "version": "1.2.0", "arch": "amd64" },
       { "org": "mycluster", "url": "intel.edgex-redis", "version": "5.8.0", "arch": "amd64" },
       { "org": "mycluster", "url": "intel.edgex-core-metadata", "version": "1.2.1", "arch": "amd64" }
    ],

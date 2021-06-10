@@ -1,20 +1,3 @@
-scheduler:
-    image: edgexfoundry/docker-support-scheduler-go:1.2.1
-    ports:
-      - "127.0.0.1:48085:48085"
-    container_name: edgex-support-scheduler
-    hostname: edgex-support-scheduler
-    networks:
-      - edgex-network
-    environment:
-      <<: *common-variables
-      Service_Host: edgex-support-scheduler
-      IntervalActions_ScrubPushed_Host: edgex-core-data
-      IntervalActions_ScrubAged_Host: edgex-core-data
-    depends_on:
-      - consul
-      - redis
-
 {
   "org": "mycluster",
   "url": "intel.support-scheduler",

@@ -1,20 +1,3 @@
-  device-rest:
-    image: edgexfoundry/docker-device-rest-go:1.1.1
-    ports:
-      - "127.0.0.1:49986:49986"
-    container_name: edgex-device-rest
-    hostname: edgex-device-rest
-    volumes:
-      - ./res/device-rest-go/:/res/
-    networks:
-      - edgex-network
-    environment:
-      <<: *common-variables
-      Service_Host: edgex-device-rest
-    depends_on:
-      - data
-      - command
-
 {
   "org": "mycluster",
   "url": "intel.edgex-device-rest",
