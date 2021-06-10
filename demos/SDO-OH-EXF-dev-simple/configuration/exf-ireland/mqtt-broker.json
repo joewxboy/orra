@@ -1,18 +1,18 @@
 {
-Â  "org": "${HZN_ORG_ID}",
-Â  "url": "intel.edgex-mqtt-broker",
-Â  "version": "1.5.8",
-Â  "arch": "amd64",
-Â  "public": true,
-Â  "sharable": "singleton",
-Â  "deployment": {
-Â Â Â  "services": {
-Â Â Â Â Â  "edgex-mqtt-broker": {
-Â Â Â Â Â Â Â  "image": "eclipse-mosquitto:1.5.8",
-Â Â Â Â Â Â Â  "ports": [Â 
-Â Â Â Â Â Â Â Â Â  { "HostIP": "0.0.0.0", "HostPort": "1883/tcp" }
-Â Â Â Â Â Â Â  ]
-Â Â Â Â Â  }
-Â Â Â  }
-Â  }
+  "org": "${HZN_ORG_ID}",
+  "url": "intel.edgex-mqtt-broker",
+  "version": "1.5.8",
+  "arch": "amd64",
+  "public": true,
+  "sharable": "singleton",
+  "deployment": {
+    "services": {
+      "edgex-mqtt-broker": {
+        "image": "eclipse-mosquitto:1.5.8",
+        "ports": [ 
+          { "HostIP": "0.0.0.0", "HostPort": "1883/tcp" }
+        ]
+      }
+    }
+  }
 }
