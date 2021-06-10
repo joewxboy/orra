@@ -1,5 +1,5 @@
 {
-  "org": "mycluster",
+  "org": "${HZN_ORG_ID}",
   "url": "intel.edgex-mqtt-broker",
   "version": "1.5.8",
   "arch": "amd64",

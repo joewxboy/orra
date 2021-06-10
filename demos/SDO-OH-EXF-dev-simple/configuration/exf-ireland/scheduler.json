@@ -1,13 +1,13 @@
 {
-  "org": "mycluster",
+  "org": "${HZN_ORG_ID}",
   "url": "intel.support-scheduler",
   "version": "1.2.1",
   "arch": "amd64",
   "public": true,
   "sharable": "singleton",
   "requiredServices": [
-      { "org": "mycluster", "url": "intel.edgex-consul", "version": "1.2.0", "arch": "amd64" },
-      { "org": "mycluster", "url": "intel.edgex-redis", "version": "5.8.0", "arch": "amd64" }
+      { "org": "${HZN_ORG_ID}", "url": "intel.edgex-consul", "version": "1.2.0", "arch": "amd64" },
+      { "org": "${HZN_ORG_ID}", "url": "intel.edgex-redis", "version": "5.8.0", "arch": "amd64" }
    ],
    "userInput": [
       { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": false},

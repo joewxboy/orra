@@ -1,5 +1,5 @@
 {
-  "org": "mycluster",
+  "org": "${HZN_ORG_ID}",
   "url": "intel.edgex-consul",
   "version": "1.2.0",
   "arch": "amd64",
