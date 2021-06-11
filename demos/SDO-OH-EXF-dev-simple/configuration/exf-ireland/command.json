@@ -27,7 +27,7 @@
 	"userInput": [{
 			"name": "EDGEX_SECURITY_SECRET_STORE",
 			"type": "boolean",
-			"defaultValue": false
+			"defaultValue": "false"
 		},
 		{
 			"name": "Registry_Host",
@@ -82,7 +82,7 @@
 		{
 			"name": "Logging_EnableRemote",
 			"type": "boolean",
-			"defaultValue": false
+			"defaultValue": "false"
 		},
 		{
 			"name": "Service_Host",

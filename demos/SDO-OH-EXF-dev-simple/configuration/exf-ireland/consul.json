@@ -14,7 +14,7 @@
 		{
 			"name": "EDGEX_SECURE",
 			"type": "boolean",
-			"defaultValue": false
+			"defaultValue": "false"
 		}
 	],
 	"deployment": {
