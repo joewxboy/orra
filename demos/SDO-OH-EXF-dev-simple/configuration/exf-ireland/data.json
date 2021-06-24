@@ -1,19 +1,25 @@
 {
 	"org": "${HZN_ORG_ID}",
-	"url": "intel.edgex-device-rest",
-	"version": "1.1.1",
+	"url": "intel.edgex-core-data",
+	"version": "1.2.1",
 	"arch": "amd64",
 	"public": false,
 	"sharable": "singleton",
 	"requiredServices": [{
 			"org": "${HZN_ORG_ID}",
-			"url": "intel.edgex-core-data",
-			"version": "1.2.1",
+			"url": "intel.edgex-consul",
+			"version": "1.2.0",
 			"arch": "amd64"
 		},
 		{
 			"org": "${HZN_ORG_ID}",
-			"url": "intel.core-command",
+			"url": "intel.edgex-redis",
+			"version": "5.8.0",
+			"arch": "amd64"
+		},
+		{
+			"org": "${HZN_ORG_ID}",
+			"url": "intel.edgex-core-metadata",
 			"version": "1.2.1",
 			"arch": "amd64"
 		}
@@ -81,19 +87,19 @@
 		{
 			"name": "Service_Host",
 			"type": "string",
-			"defaultValue": "edgex-device-rest"
+			"defaultValue": "edgex-core-command"
 		}
 	],
 	"deployment": {
 		"services": {
-			"edgex-device-rest": {
-				"image": "edgexfoundry/docker-device-rest-go:1.1.1",
-				"binds": [
-					"./res/device-rest-go/:/res/:rw"
-				],
+			"edgex-core-data": {
+				"image": "edgexfoundry/docker-core-data-go:1.2.1",
 				"ports": [{
 					"HostIP": "127.0.0.1",
-					"HostPort": "49986:49986/tcp"
+					"HostPort": "48080/tcp"
+				},{
+					"HostIP": "127.0.0.1",
+					"HostPort": "5563/tcp"
 				}]
 			}
 		}
