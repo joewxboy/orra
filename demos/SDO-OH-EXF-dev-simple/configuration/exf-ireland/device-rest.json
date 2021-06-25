@@ -89,7 +89,7 @@
 			"edgex-device-rest": {
 				"image": "edgexfoundry/docker-device-rest-go:1.1.1",
 				"binds": [
-					"res/device-rest-go/:/res/:rw"
+					"device-rest-go:/res/:rw"
 				],
 				"ports": [{
 					"HostIP": "127.0.0.1",
