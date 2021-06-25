@@ -18,9 +18,17 @@
 
 hzn exchange service publish -P -f device-rest.json
 
-hzn exchange service addpolicy --json-file=deployment.policy.json myorg/intel.edgex-device-rest_1.1.1_amd64
+hzn exchange service addpolicy --json-file=service.policy.json myorg/intel.edgex-device-rest_1.1.1_amd64
 
 hzn exchange service listpolicy myorg/intel.edgex-device-rest_1.1.1_amd64
+
+hzn exchange deployment addpolicy -f deployment.policy.json myorg/policy-intel.edgex-device-rest_1.1.1
+
+hzn exchange deployment listpolicy myorg/policy-intel.edgex-device-rest_1.1.1
+
+hzn register --policy ../node.policy
+
+hzn service log -f intel.edgex-device-rest
 
 hzn exchange node addpolicy --json-file=../node.policy node1
 
