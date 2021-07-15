@@ -28,7 +28,13 @@ hzn exchange deployment listpolicy myorg/policy-intel.edgex-device-rest_1.1.1
 
 hzn register --policy ../node.policy
 
+watch hzn agreement list
+
+"2021-06-25 18:52:24:   Error starting containers: API error (400): create ./res/device-rest-go/: \"./res/device-rest-go/\" includes invalid characters for a local volume name, only \"[a-zA-Z0-9][a-zA-Z0-9_.-]\" are allowed. If you intended to pass a host directory, use absolute path"
+
 hzn service log -f intel.edgex-device-rest
+
+hzn eventlog list
 
 hzn exchange node addpolicy --json-file=../node.policy node1
 
