@@ -1,0 +1,19 @@
+{
+	"org": "${HZN_ORG_ID}",
+	"url": "intel.edgex-mqtt-broker",
+	"version": "1.5.8",
+	"arch": "amd64",
+	"public": false,
+	"sharable": "singleton",
+	"deployment": {
+		"services": {
+			"edgex-mqtt-broker": {
+				"image": "eclipse-mosquitto:1.5.8",
+				"ports": [{
+					"HostIP": "0.0.0.0",
+					"HostPort": "1883/tcp"
+				}]
+			}
+		}
+	}
+}
