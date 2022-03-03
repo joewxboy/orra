@@ -1,0 +1,8 @@
+{
+  "MetadataVars": {
+    "REDIS_DOCKER_IMAGE": "redis:6.2.6-alpine",
+    "REDIS_SERVICE_NAME": "edgex-redis",
+    "REDIS_SERVICE_VERSION": "6.2.6",
+    "REDIS_URL": "intel.edgex-redis"
+  }
+}

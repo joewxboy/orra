@@ -6,15 +6,8 @@
     "userInput": [
         { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": false},
         { "name": "Registry_Host", "type": "string",  "defaultValue": "edgex-core-consul" },
-        { "name": "Clients_CoreData_Host", "type": "string",  "defaultValue": "edgex-core-data" },
-        { "name": "Clients_Data_Host", "type": "string",  "defaultValue": "edgex-core-data" },
-        { "name": "Clients_Notifications_Host", "type": "string",  "defaultValue": "edgex-support-notifications" },
         { "name": "Clients_Metadata_Host", "type": "string",  "defaultValue": "edgex-core-metadata" },
-        { "name": "Clients_Command_Host", "type": "string",  "defaultValue": "edgex-core-command" },
-        { "name": "Clients_Scheduler_Host", "type": "string",  "defaultValue": "edgex-support-scheduler" },
         { "name": "Clients_RulesEngine_Host", "type": "string",  "defaultValue": "edgex-kuiper" },
-        { "name": "Clients_VirtualDevice_Host", "type": "string",  "defaultValue": "edgex-device-virtual" },
         { "name": "Databases_Primary_Host", "type": "string",  "defaultValue": "edgex-redis" },
-        { "name": "Logging_EnableRemote", "type": "boolean",  "defaultValue": false}
     ]
 ```

@@ -1,20 +1,26 @@
 {
 	"org": "${HZN_ORG_ID}",
-	"url": "intel.edgex-core-metadata",
+	"url": "intel.edgex-device-mqtt",
 	"version": "2.1.0",
 	"arch": "amd64",
 	"public": false,
 	"sharable": "singleton",
 	"requiredServices": [{
 			"org": "${HZN_ORG_ID}",
-			"url": "intel.edgex-consul",
-			"version": "1.10.3",
+			"url": "${REDIS_URL}",
+			"version": "${REDIS_VERSION}",
+			"arch": "${ARCH}"
+		},
+		{
+			"org": "${HZN_ORG_ID}",
+			"url": "intel.edgex-core-metadata",
+			"version": "2.1.0",
 			"arch": "amd64"
 		},
 		{
 			"org": "${HZN_ORG_ID}",
-			"url": "intel.edgex-redis",
-			"version": "6.2.6",
+			"url": "intel.edgex-mqtt-broker",
+			"version": "2.0.12",
 			"arch": "amd64"
 		}
 	],
@@ -29,23 +35,26 @@
 			"defaultValue": "edgex-core-consul"
 		},
 		{
-			"name": "DATABASES_PRIMARY_HOST",
+			"name": "CLIENTS_METADATA_HOST",
 			"type": "string",
-			"defaultValue": "edgex-redis"
+			"defaultValue": "edgex-core-metadata"
 		},
 		{
 			"name": "SERVICE_HOST",
 			"type": "string",
-			"defaultValue": "edgex-core-metadata"
+			"defaultValue": "edgex-device-mqtt"
 		}
 	],
 	"deployment": {
 		"services": {
-			"edgex-core-metadata": {
-				"image": "edgexfoundry/core-metadata:2.1.0",
+			"edgex-device-mqtt": {
+				"image": "edgexfoundry/device-mqtt:2.1.0",
+				"binds": [
+					"$APP_BIND_HORIZON/res/device-mqtt/:/res/"
+				],
 				"ports": [{
 					"HostIP": "127.0.0.1",
-					"HostPort": "59881:59881/tcp"
+					"HostPort": "59982:59982/tcp"
 				}]
 			}
 		}

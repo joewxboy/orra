@@ -1,14 +1,15 @@
 {
 	"org": "${HZN_ORG_ID}",
 	"url": "intel.edgex-mqtt-broker",
-	"version": "1.5.8",
+	"version": "2.0.12",
 	"arch": "amd64",
 	"public": false,
 	"sharable": "singleton",
 	"deployment": {
 		"services": {
 			"edgex-mqtt-broker": {
-				"image": "eclipse-mosquitto:1.5.8",
+				"image": "eclipse-mosquitto:2.0.12",
+				"command": "/usr/sbin/mosquitto -c /mosquitto-no-auth.conf",
 				"ports": [{
 					"HostIP": "0.0.0.0",
 					"HostPort": "1883/tcp"

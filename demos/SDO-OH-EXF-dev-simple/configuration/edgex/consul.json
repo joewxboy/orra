@@ -1,35 +1,22 @@
 {
 	"org": "${HZN_ORG_ID}",
 	"url": "intel.edgex-consul",
-	"version": "1.2.0",
+	"version": "1.10.3",
 	"arch": "amd64",
 	"public": false,
 	"sharable": "singleton",
 	"requiredServices": [],
-	"userInput": [{
-			"name": "EDGEX_DB",
-			"type": "string",
-			"defaultValue": "redis"
-		},
-		{
-			"name": "EDGEX_SECURE",
-			"type": "boolean",
-			"defaultValue": "false"
-		}
-	],
+	"userInput": [],
 	"deployment": {
 		"services": {
 			"edgex-core-consul": {
-				"image": "edgexfoundry/docker-edgex-consul:1.2.0",
+				"image": "consul:1.10.3",
+				"command" : "agent -ui -bootstrap -server -client 0.0.0.0",
 				"binds": [
 					"consul-config:/consul/config:rw",
 					"consul-data:/consul/data:rw"
 				],
 				"ports": [{
-						"HostIP": "127.0.0.1",
-						"HostPort": "8400:8400/tcp"
-					},
-					{
 						"HostIP": "127.0.0.1",
 						"HostPort": "8500:8500/tcp"
 					}
