@@ -2,30 +2,28 @@ networks:
   edgex-network:
     driver: bridge
 services:
-  app-service-rules:
-    container_name: edgex-app-rules-engine
+  app-service-mqtt-export:
+    container_name: edgex-app-mqtt-export
     depends_on:
       - consul
-      - data
+      - database
     environment:
       CLIENTS_CORE_COMMAND_HOST: edgex-core-command
-      CLIENTS_CORE_DATA_HOST: edgex-core-data
       CLIENTS_CORE_METADATA_HOST: edgex-core-metadata
-      CLIENTS_SUPPORT_NOTIFICATIONS_HOST: edgex-support-notifications
-      CLIENTS_SUPPORT_SCHEDULER_HOST: edgex-support-scheduler
-      DATABASES_PRIMARY_HOST: edgex-redis
-      EDGEX_PROFILE: rules-engine
+      EDGEX_PROFILE: mqtt-export
       EDGEX_SECURITY_SECRET_STORE: "false"
       REGISTRY_HOST: edgex-core-consul
-      SERVICE_HOST: edgex-app-rules-engine
+      SERVICE_HOST: edgex-app-mqtt-export
       TRIGGER_EDGEXMESSAGEBUS_PUBLISHHOST_HOST: edgex-redis
       TRIGGER_EDGEXMESSAGEBUS_SUBSCRIBEHOST_HOST: edgex-redis
-    hostname: edgex-app-rules-engine
+      WRITABLE_PIPELINE_FUNCTIONS_MQTTEXPORT_PARAMETERS_BROKERADDRESS: tcp://edgex-mqtt-broker:1883
+      WRITABLE_PIPELINE_FUNCTIONS_MQTTEXPORT_PARAMETERS_TOPIC: edgex-events
+    hostname: edgex-app-mqtt-export
     image: edgexfoundry/app-service-configurable:2.1.0
     networks:
       edgex-network: {}
     ports:
-      - 127.0.0.1:59701:59701/tcp
+      - 127.0.0.1:59703:59703/tcp
     read_only: true
     restart: always
     security_opt:
@@ -35,15 +33,9 @@ services:
     container_name: edgex-core-command
     depends_on:
       - consul
-      - database
       - metadata
     environment:
-      CLIENTS_CORE_COMMAND_HOST: edgex-core-command
-      CLIENTS_CORE_DATA_HOST: edgex-core-data
       CLIENTS_CORE_METADATA_HOST: edgex-core-metadata
-      CLIENTS_SUPPORT_NOTIFICATIONS_HOST: edgex-support-notifications
-      CLIENTS_SUPPORT_SCHEDULER_HOST: edgex-support-scheduler
-      DATABASES_PRIMARY_HOST: edgex-redis
       EDGEX_SECURITY_SECRET_STORE: "false"
       REGISTRY_HOST: edgex-core-consul
       SERVICE_HOST: edgex-core-command
@@ -77,15 +69,6 @@ services:
       - consul-data:/consul/data:z
   database:
     container_name: edgex-redis
-    environment:
-      CLIENTS_CORE_COMMAND_HOST: edgex-core-command
-      CLIENTS_CORE_DATA_HOST: edgex-core-data
-      CLIENTS_CORE_METADATA_HOST: edgex-core-metadata
-      CLIENTS_SUPPORT_NOTIFICATIONS_HOST: edgex-support-notifications
-      CLIENTS_SUPPORT_SCHEDULER_HOST: edgex-support-scheduler
-      DATABASES_PRIMARY_HOST: edgex-redis
-      EDGEX_SECURITY_SECRET_STORE: "false"
-      REGISTRY_HOST: edgex-core-consul
     hostname: edgex-redis
     image: redis:6.2.6-alpine
     networks:
@@ -103,16 +86,11 @@ services:
     container_name: edgex-device-mqtt
     depends_on:
       - consul
-      - data
       - metadata
+      - database
       - mqtt-broker
     environment:
-      CLIENTS_CORE_COMMAND_HOST: edgex-core-command
-      CLIENTS_CORE_DATA_HOST: edgex-core-data
       CLIENTS_CORE_METADATA_HOST: edgex-core-metadata
-      CLIENTS_SUPPORT_NOTIFICATIONS_HOST: edgex-support-notifications
-      CLIENTS_SUPPORT_SCHEDULER_HOST: edgex-support-scheduler
-      DATABASES_PRIMARY_HOST: edgex-redis
       EDGEX_SECURITY_SECRET_STORE: "false"
       MESSAGEQUEUE_HOST: edgex-redis
       MQTTBROKERINFO_HOST: edgex-mqtt-broker
@@ -129,12 +107,33 @@ services:
     security_opt:
       - no-new-privileges:true
     user: 2002:2001
+  device-onvif-camera:
+    container_name: edgex-device-onvif-camera
+    depends_on:
+      - consul
+      - metadata
+      - database
+    environment:
+      CLIENTS_CORE_METADATA_HOST: edgex-core-metadata
+      EDGEX_SECURITY_SECRET_STORE: "false"
+      MESSAGEQUEUE_HOST: edgex-redis
+      REGISTRY_HOST: edgex-core-consul
+      SERVICE_HOST: edgex-device-onvif-camera
+    hostname: edgex-device-onvif-camera
+    image: edgexfoundry/device-onvif-camera:0.0.0-dev
+    network_mode: host
+    ports:
+    - 127.0.0.1:59985:59985/tcp
+    read_only: true
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    user: 2002:2001
   metadata:
     container_name: edgex-core-metadata
     depends_on:
       - consul
       - database
-      - notifications
     environment:
       CLIENTS_CORE_COMMAND_HOST: edgex-core-command
       CLIENTS_CORE_DATA_HOST: edgex-core-data
